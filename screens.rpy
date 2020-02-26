@@ -1517,7 +1517,7 @@ screen extras_navigation():
 
             textbutton _("Notas do garoto de programa") action ShowMenu("dev_notes")
 
-        textbutton _("Return") action Return()
+        textbutton _("Voltar") action Return()
 
 ## Extras Menu screen ############################################################
 ##

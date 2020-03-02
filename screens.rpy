@@ -253,8 +253,8 @@ screen quick_menu():
             xalign 0.5
             yalign 1.0
 
-            textbutton _("Back") action Rollback()
-            textbutton _("History") action ShowMenu('history')
+            textbutton _("GGPO") action Rollback()
+            textbutton _("Log") action ShowMenu('history')
             textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
             textbutton _("Auto") action Preference("auto-forward", "toggle")
             textbutton _("Save") action ShowMenu('save')
@@ -291,13 +291,13 @@ style quick_button_text:
 
 screen navigation():
 
-    vbox:
-        style_prefix "navigation"
+    hbox:
+        style_prefix "succ"
 
-        xpos gui.navigation_xpos
-        yalign 0.5
+        xalign 0.5
+        yalign 0.9
 
-        spacing gui.navigation_spacing
+        spacing 60
 
         if main_menu:
 
@@ -322,6 +322,8 @@ screen navigation():
             textbutton _("Main Menu") action MainMenu()
 
         textbutton _("About") action ShowMenu("about")
+
+        textbutton _("Extras") action ShowMenu("extras_navigation")
 
         if renpy.variant("pc") or (renpy.variant("web") and not renpy.variant("mobile")):
 
@@ -471,7 +473,7 @@ screen game_menu(title, scroll=None, yinitial=0.0):
 
                     transclude
 
-    use navigation
+#    use navigation Tira o menu principal das telas "Load, Preference, About" etc...
 
     textbutton _("Return"):
         style "return_button"
@@ -499,7 +501,8 @@ style return_button_text is navigation_button_text
 
 style game_menu_outer_frame:
     bottom_padding 30
-    top_padding 120
+    top_padding 60
+    right_padding 300
 
     background "gui/overlay/game_menu.png"
 
@@ -557,13 +560,13 @@ screen about():
         vbox:
 
             label "[config.name!t]"
-            text _("Version [config.version!t]\n")
+            text _("Versão [config.version!t]\n")
 
             ## gui.about is usually set in options.rpy.
             if gui.about:
                 text "[gui.about!t]\n"
 
-            text _("Made with {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]")
+            text _("Feito com {a=https://www.renpy.org/}Ren'Py{/a} [renpy.version_only].\n\n[renpy.license!t]")
 
 
 ## This is redefined in options.rpy to add text to the about screen.
@@ -603,7 +606,7 @@ screen load():
 
 screen file_slots(title):
 
-    default page_name_value = FilePageNameInputValue(pattern=_("Page {}"), auto=_("Automatic saves"), quick=_("Quick saves"))
+    default page_name_value = FilePageNameInputValue(pattern=_("Página {}"), auto=_("Automatic saves"), quick=_("Quick saves"))
 
     use game_menu(title):
 
@@ -657,7 +660,7 @@ screen file_slots(title):
             hbox:
                 style_prefix "page"
 
-                xalign 0.5
+                xalign 0.3
                 yalign 1.0
 
                 spacing gui.page_spacing
@@ -716,6 +719,7 @@ style slot_button_text:
 ##
 ## https://www.renpy.org/doc/html/screen_special.html#preferences
 
+
 screen preferences():
 
     tag menu
@@ -725,9 +729,9 @@ screen preferences():
         vbox:
 
             hbox:
-                box_wrap True
+                box_wrap False
 
-                if renpy.variant("pc") or renpy.variant("web"):
+                if renpy.variant("pc"):
 
                     vbox:
                         style_prefix "radio"
@@ -752,8 +756,23 @@ screen preferences():
                 ## Additional vboxes of type "radio_pref" or "check_pref" can be
                 ## added here, to add additional creator-defined preferences.
 
-            null height (4 * gui.pref_spacing)
-
+            vbox:
+                box_wrap False
+                style_prefix "check"
+                label _("Accessibility")
+                hbox:
+                    textbutton _("Sound Captions") action ToggleVariable("persistent.sound_captions")
+                    textbutton _("Image Captions") action ToggleVariable("persistent.image_captions")
+                    # Self-voicing does not work on smartphone devices, so this option only shows if the user is playing on a PC.
+                    if renpy.variant("pc"):
+                        vbox:
+                            hbox:
+                                textbutton _("Self-Voicing") action Preference("self voicing", "toggle")
+                                # This shows Ren'Py's built-in accessibility menu. This can also be displayed by pressing "A" on the keyboard when playing on a PC. As this option can break the way the game is displayed and also does not support translation as of the latest Ren'Py build, you may want to hide the option.
+                                textbutton _("More Options...") action Show("_accessibility")
+                                # This button will return the user to the Preferences menu.
+                                # It can be removed if it isn't necessary.
+                                textbutton ("") #Adds space between accessibility options and return button
             hbox:
                 style_prefix "slider"
                 box_wrap True
@@ -802,7 +821,6 @@ screen preferences():
                         textbutton _("Mute All"):
                             action Preference("all mute", "toggle")
                             style "mute_all_button"
-
 
 style pref_label is gui_label
 style pref_label_text is gui_label_text
@@ -1418,12 +1436,13 @@ style nvl_button_text:
 ## program.
 
 # These background buttons are 480x270
-image quarto_antes_button = im.FactorScale("images/backgrounds/dormitório/quarto_protag.jpg", 0.25)
-image dormd_button = im.FactorScale("images/backgrounds/dormitório/dormitório_dia.jpg", 0.25)
-image dormv_button = im.FactorScale("images/backgrounds/dormitório/dormitório_tarde.jpg", 0.25)
-image dormn_button = im.FactorScale("images/backgrounds/dormitório/dormitório_noite.jpg", 0.25)
+image quarto_button = im.FactorScale("images/backgrounds/dormitório/quarto_protag.jpg", 0.25)
+image dormd_button = im.FactorScale("images/backgrounds/dormitório/dorm_dia.jpg", 0.25)
+image dormv_button = im.FactorScale("images/backgrounds/dormitório/dorm_tarde.jpg", 0.25)
+image dormn_button = im.FactorScale("images/backgrounds/dormitório/dorm_noite.jpg", 0.25)
 image parque_button = im.FactorScale("images/backgrounds/parque/parque.jpg", 0.25)
 image cidade_button = im.FactorScale("images/backgrounds/cidade/cidade_protag.jpg", 0.25)
+image sonho_button = im.FactorScale("images/backgrounds/sonho/sonho.jpg", 0.25)
 image bglock_button = "gui/button/bg_locked.jpg"
 
 # These sprite buttons are 290x290
@@ -1439,16 +1458,33 @@ init python:
     g_bg = Gallery()
 
     # Backgrounds for the BG Gallery
-    g_bg.button("room")
-    g_bg.unlock_image("room")
+    g_bg.button("sonho")
+    g_bg.image("sonho")
+    g_bg.unlock("sonho")
 
-    g_bg.button("office")
-    g_bg.image("future_office")
-    g_bg.unlock("future_office")
+    g_bg.button("dormd")
+    g_bg.image("dormd")
+    g_bg.unlock("dormd")
 
-    g_bg.button("beach")
-    g_bg.image("sort_of_beautiful_beach_day")
-    g_bg.unlock("sort_of_beautiful_beach_day")
+    g_bg.button("dormv")
+    g_bg.image("dormv")
+    g_bg.unlock("dormv")
+
+    g_bg.button("dormn")
+    g_bg.image("dormn")
+    g_bg.unlock("dormn")
+
+    g_bg.button("quarto")
+    g_bg.image("quarto")
+    g_bg.unlock("quarto")
+
+    g_bg.button("cidade")
+    g_bg.image("cidade_protag")
+    g_bg.unlock("cidade_protag")
+
+    g_bg.button("parque")
+    g_bg.image("parque")
+    g_bg.unlock("parque")
 
     # Sprites for the Sprite Gallery
     # We put a background in the first spot so Eileen isn't floating in a void.
@@ -1515,9 +1551,9 @@ screen extras_navigation():
 
         if persistent.game_clear:
 
-            textbutton _("Notas do garoto de programa") action ShowMenu("dev_notes")
+            textbutton _("Notas do Dev") action ShowMenu("dev_notes")
 
-        textbutton _("Voltar") action Return()
+        textbutton _("Return") action Return()
 
 ## Extras Menu screen ############################################################
 ##
@@ -1617,18 +1653,17 @@ screen bg_gallery():
     ## This use statement includes the extras_menu screen inside this one.
     use extras_menu("Galeria de backgrounds"):
 
-        grid 1 3:
-
-            xfill True
-            yfill True
+        grid 2 4:
 
             # Call make_button to show a particular button.
-            add g_bg.make_button("Quarto da Protag", "quarto_antes_button", xalign=0.5, yalign=0.5)
-            add g_bg.make_button("Dormitório de Dia", "dormd_button", xalign=0.5, yalign=0.5)
-            add g_bg.make_button("Dormitório de Tarde", "dormv_button", xalign=0.5, yalign=0.5)
-            add g_bg.make_button("Dormitório de Noite", "dormn_button", xalign=0.5, yalign=0.5)
-            add g_bg.make_button("Cidade da Protag", "cidade_button", xalign=0.5, yalign=0.5)
-            add g_bg.make_button("Parque", "parque_button", xalign=0.5, yalign=0.5)
+            add g_bg.make_button("sonho", "sonho_button", xalign=0.5, yalign=0.5)
+            add g_bg.make_button("quarto", "sonho_button", xalign=0.5, yalign=0.5)
+            add g_bg.make_button("dormd", "dormd_button", xalign=0.5, yalign=0.5)
+            add g_bg.make_button("dormv", "dormv_button", xalign=0.5, yalign=0.5)
+            add g_bg.make_button("dormn", "dormn_button", xalign=0.5, yalign=0.5)
+            add g_bg.make_button("cidade", "cidade_button", xalign=0.5, yalign=0.5)
+            add g_bg.make_button("parque", "parque_button", xalign=0.5, yalign=0.5)
+            add g_bg.make_button("parque", "parque_button", xalign=0.5, yalign=0.5)
 ## Music Gallery screen ############################################################
 ##
 ## This is a simple screen that shows buttons that play a music track.
@@ -1732,10 +1767,10 @@ turnabouts, que coisa legal. Obrigado por jogar essa porra.""")
 python early:
     simple_achievement_list = (
         # ("Achievement Name", "Description when not unlocked", "Description when unlocked"),
-        ("Beginning", "???", "Started a new game"),
+        ("Novato", "???", "Começou um jogo novo"),
         ("Office", "???", "Went to the office"),
         ("Beach", "???", "Went to the beach"),
-        ("Completionist", "???", "Read all of the game")
+        ("Completionist", "???", "Leu o jogo inteiro")
     )
 
 ## Registers your achievements to work on backend systems such as Steam
@@ -1867,7 +1902,11 @@ screen credits():
 
             null height 50
 
-            text "Backgrounds por shijimi"
+            text "Backgrounds por shijimi, e outros que peguei da net"
+
+            null height 50
+
+            text "GUI por Suika"
 
             null height 200
 
@@ -1876,10 +1915,18 @@ screen credits():
 
             text "Tasofro"
 
+            null height 50
+
+            text "Sound Holic"
+
+            null height 50
+
+            text "ZUN"
+
             null height 200
 
             # text "GUI Template" size 100
-            text "Programming" size 100
+            text "Programação" size 100
             null height 50
 
             hbox:
@@ -2030,7 +2077,7 @@ screen quick_menu():
             xalign 0.5
             yalign 1.0
 
-            textbutton _("Back") action Rollback()
+            textbutton _("GGPO") action Rollback()
             textbutton _("Skip") action Skip() alternate Skip(fast=True, confirm=True)
             textbutton _("Auto") action Preference("auto-forward", "toggle")
             textbutton _("Menu") action ShowMenu()

@@ -23,7 +23,7 @@ define gui.show_name = False
 
 ## The version of the game.
 
-define config.version = "1.2"
+define config.version = "0.5"
 
 
 ## Text that is placed on the game's about screen. Place the text between the
@@ -31,7 +31,7 @@ define config.version = "1.2"
 
 define gui.about = _p("""Uma visual novel feita com muito amor e carinho para
 nossos queridos gensouers, que estão sempre em nosso coração, e no das
-garotas também :^).
+garotas lendo isso também :^).
 """)
 
 
@@ -55,7 +55,7 @@ define config.has_voice = False
 ## To allow the user to play a test sound on the sound or voice channel,
 ## uncomment a line below and use it to set a sample sound to play.
 
-# define config.sample_sound = "sample-sound.ogg"
+define config.sample_sound = "audio/sfx/Interior-Door_Close.mp3"
 # define config.sample_voice = "sample-voice.ogg"
 
 
@@ -63,7 +63,7 @@ define config.has_voice = False
 ## the player is at the main menu. This file will continue playing into the
 ## game, until it is stopped or another file is played.
 
-define config.main_menu_music = "audio/main-menu-theme.mp3"
+define config.main_menu_music = "audio/st/HISOUTENSOKU.mp3"
 
 
 ## Transitions #################################################################
@@ -121,7 +121,7 @@ define config.window_hide_transition = Dissolve(.2)
 ## Controls the default text speed. The default, 0, is infinite, while any other
 ## number is the number of characters per second to type out.
 
-default preferences.text_cps = 0
+default preferences.text_cps = 30
 
 
 ## The default auto-forward delay. Larger numbers lead to longer waits, with 0

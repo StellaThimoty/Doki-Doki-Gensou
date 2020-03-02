@@ -34,25 +34,29 @@ default persistent.image_captions = False
 init python:
 
 # This is the text that will show whenever you play a sound. The sound description will follow.
-    soundtext = _("Sound: ")
+    soundtext = _("SFX: ")
 
 # This is the text that will show whenever you play music. The music description will follow.
     musictext = _("Music: ")
 
 # This is where you define the names for the sound files you will be using in the game.
     # example = "audio/examplefile.ogg"
-    door = "audio/sfx/Interior-Door_Close.mp3"
+    doora = "audio/sfx/Interior-Door_Close.mp3"
+    doorf = "audio/sfx/Interior-Door_Close.mp3"
     drawer_close = "audio/sfx/Chest-Drawer_Close.mp3"
     drawer_open = "audio/sfx/Chest-Drawer_Open.mp3"
     ocean = "audio/sfx/Edge-of-Ocean.mp3"
+    alarme = "audio/sfx/alarme.mp3"
 
 # This is where you define the sound captions for each sound file you will be using in the game. Please make sure the names of the sounds defined above match the ones used for the captions below.
     sound_list = {
     # example: _("Example text here"),
-    door : _("A door closes"),
+    doora : _("A porta é aberta"),
+    doorf : _("A porta é fechada"),
     drawer_close : _("A drawer closes"),
     drawer_open : _("A drawer opens"),
-    ocean : _("Ocean waves hit the shore")
+    ocean : _("Ocean waves hit the shore"),
+    alarme : _("O Alarme toca...")
     }
 
 # This is where you define the names for the music files you will be using in the game. It is recommended to define the main menu BGM as well.
@@ -61,14 +65,19 @@ init python:
     concrete = "audio/music/The-Concrete-Bakes_Looping.mp3"
     garden = "audio/music/Sculpture-Garden_Looping.mp3"
     summer = "audio/music/Careless-Summer_Looping.mp3"
-
+    cringe = "audio/st/TH10.5 Touhou Hisouten - Original Disc - 4 - Kouron Otsubaku.mp3"
+    HISOUTENSOKU = "audio/st/HISOUTENSOKU.mp3"
+    profundo = "audio/st/profundo.mp3"
 # This is where you define the music captions for each music file you will be using in the game. Please make sure the names of the music defined above match the ones used for the captions below.
     music_list = {
     # example: _("Example text here"),
     business : _("Future Business"),
     concrete : _("The Concrete Bakes"),
     garden : _("Sculpture Garden"),
-    summer : _("Careless Summer")
+    summer : _("Careless Summer"),
+    cringe : _("Kouron Otsubaku"),
+    HISOUTENSOKU  : _("Zen jinrui no Hisoutensoku"),
+    profundo :_("Opening do SWR e do IaMP")
     }
 
 # This is the sound command. It functions the same way as "play sound" normally does. You can change the fadein, fadeout and loop values when you invoke the command. If you do not change the values, the default values are 0.0 fadein, 0.0 fadeout, and no loop. If you change the values below, that will change the default values for every time you invoke the command.
@@ -117,9 +126,9 @@ define ic = Character(_(None),condition="persistent.image_captions or _preferenc
 
 # This can be used if you want a menu ONLY for accessibility options. You can also copy and paste the buttons into the default Ren'Py preferences screen.
 
-## For our purposes, we will be adding these into the normal Preferences screen. - 
+## For our purposes, we will be adding these into the normal Preferences screen. -
 
-# screen accessibility:
+# screen accessibility():
 
 #     tag menu
 

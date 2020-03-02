@@ -23,21 +23,21 @@ init python:
 ## The colors of text in the interface.
 
 ## An accent color used throughout the interface to label and highlight text.
-define gui.accent_color = '#0099cc'
+define gui.accent_color = '#a60a94'
 
 ## The color used for a text button when it is neither selected nor hovered.
-define gui.idle_color = '#888888'
+define gui.idle_color = '#ca89db'
 
 ## The small color is used for small text, which needs to be brighter/darker to
 ## achieve the same effect.
 define gui.idle_small_color = '#aaaaaa'
 
 ## The color that is used for buttons and bars that are hovered.
-define gui.hover_color = '#66c1e0'
+define gui.hover_color = '#d113bb'
 
 ## The color used for a text button when it is selected but not focused. A
 ## button is selected if it is the current screen or preference value.
-define gui.selected_color = '#ffffff'
+define gui.selected_color = '#ffdfff'
 
 ## The color used for a text button when it cannot be selected.
 define gui.insensitive_color = '#8888887f'
@@ -63,7 +63,7 @@ define gui.text_font = "Comfortaa-regular.ttf"
 define gui.name_text_font = "Pinky Cupid.otf"
 
 ## The font used for out-of-game text.
-define gui.interface_text_font = "Inkfree.ttf"
+define gui.interface_text_font = "Pinky Cupid.otf"
 
 ## The size of normal dialogue text.
 define gui.text_size = 24
@@ -106,7 +106,7 @@ define gui.textbox_yalign = 1.0
 
 ## The placement of the speaking character's name, relative to the textbox.
 ## These can be a whole number of pixels from the left or top, or 0.5 to center.
-define gui.name_xpos = 230
+define gui.name_xpos = 250
 define gui.name_ypos = -30
 
 ## The horizontal alignment of the character's name. This can be 0.0 for left-
@@ -130,7 +130,7 @@ define gui.namebox_tile = False
 ## The placement of dialogue relative to the textbox. These can be a whole
 ## number of pixels relative to the left or top side of the textbox, or 0.5 to
 ## center.
-define gui.dialogue_xpos = 258
+define gui.dialogue_xpos = 276
 define gui.dialogue_ypos = 30
 
 ## The maximum width of dialogue text, in pixels.
@@ -188,10 +188,15 @@ define gui.confirm_button_text_xalign = 0.5
 
 define gui.page_button_borders = Borders(10, 4, 10, 4)
 
-define gui.quick_button_borders = Borders(10, 4, 10, 0)
-define gui.quick_button_text_size = 14
+define gui.quick_button_borders = Borders(10, 4, 10, 2)
+define gui.quick_button_text_size = 20
 define gui.quick_button_text_idle_color = gui.idle_small_color
 define gui.quick_button_text_selected_color = gui.accent_color
+
+define gui.succ_button_borders = Borders(10, 4, 10, 0)
+define gui.succ_button_text_size = 32
+define gui.succ_button_text_idle_color = gui.idle_small_color
+define gui.succ_button_text_selected_color = gui.accent_color
 
 ## You can also add your own customizations, by adding properly-named variables.
 ## For example, you can uncomment the following line to set the width of a

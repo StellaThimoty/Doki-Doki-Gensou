@@ -68,6 +68,7 @@ init python:
     cringe = "audio/st/TH10.5 Touhou Hisouten - Original Disc - 4 - Kouron Otsubaku.mp3"
     HISOUTENSOKU = "audio/st/HISOUTENSOKU.mp3"
     profundo = "audio/st/profundo.mp3"
+    ed = "audio/st/ending.mp3"
 # This is where you define the music captions for each music file you will be using in the game. Please make sure the names of the music defined above match the ones used for the captions below.
     music_list = {
     # example: _("Example text here"),
@@ -77,7 +78,8 @@ init python:
     summer : _("Careless Summer"),
     cringe : _("Kouron Otsubaku"),
     HISOUTENSOKU  : _("Zen jinrui no Hisoutensoku"),
-    profundo :_("Opening do SWR e do IaMP")
+    profundo : _("Opening do SWR e do IaMP"),
+    ed : _("NOW THE WORLD DON'T MOVE")
     }
 
 # This is the sound command. It functions the same way as "play sound" normally does. You can change the fadein, fadeout and loop values when you invoke the command. If you do not change the values, the default values are 0.0 fadein, 0.0 fadeout, and no loop. If you change the values below, that will change the default values for every time you invoke the command.

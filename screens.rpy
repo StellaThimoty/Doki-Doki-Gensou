@@ -1657,7 +1657,7 @@ screen bg_gallery():
 
             # Call make_button to show a particular button.
             add g_bg.make_button("sonho", "sonho_button", xalign=0.5, yalign=0.5)
-            add g_bg.make_button("quarto", "sonho_button", xalign=0.5, yalign=0.5)
+            add g_bg.make_button("quarto", "quarto_button", xalign=0.5, yalign=0.5)
             add g_bg.make_button("dormd", "dormd_button", xalign=0.5, yalign=0.5)
             add g_bg.make_button("dormv", "dormv_button", xalign=0.5, yalign=0.5)
             add g_bg.make_button("dormn", "dormn_button", xalign=0.5, yalign=0.5)
@@ -1749,10 +1749,15 @@ screen dev_notes():
 
 ## Type your special message here.
 define gui.dev_notes = _p("""Aqui é o Sakurako, sakrak, skrk, oomuro, tanto faz.
+
 Bom, acho que é bem importante dizer que: É a primeira vez que faço algo assim
 pra uma comunidade, sério, mesmo sendo um treco idiota, me diverti muito fazendo
-isso e cara, que coisa legal. Acho que o Sal se sente assim quando faz os
-turnabouts, que coisa legal. Obrigado por jogar essa porra.""")
+isso e cara, que coisa legal.
+
+Acho que o Sal se sente assim quando faz os
+turnabouts.
+
+Obrigado por jogar essa porra.""")
 
 ## Achievements screen ############################################################
 ##
@@ -1898,7 +1903,7 @@ screen credits():
             text "Art" size 100
             null height 50
 
-            text "Personagens por はっしゅ"
+            text "Personagens por Hasshu"
 
             null height 50
 

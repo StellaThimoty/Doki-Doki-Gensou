@@ -123,8 +123,9 @@ label start:
     Hitler "VAGABUNDA, VOCÊ VAI SE ATRASAR!"
     $ shake()
     stop music
-    scene black with fade
-    scene quarto_protag with fade and dissolve
+    scene black
+    scene quarto_protag with dissolve
+    with fade
     $ play_sound(alarme)
     "Que? Mas oque? O que tá acontecendo?"
     "Que sonho mais doido que eu tive..."
@@ -132,7 +133,11 @@ label start:
     Hitler "Finalmente acordou...{p}Seguinte garota, me pagaram pra te ajudar."
     stop sound
     $ play_music(cringe,5)
-    "HITLER!!??? VOCÊ NÃO TÁ MORTO? PORQUE VOCÊ TEM ASAS?"
+    "HITLER!!???"
+    Hitler "Sim, esse é meu nome. Não sou o ditador alemão."
+    "VOCÊ NÃO TÁ MORTO?"
+    Hitler "Eu acabei de dizer que não sou o dit-"
+    "PORQUE VOCÊ TEM ASAS?"
     Hitler "Cala a boca meu de-"
     "VOCÊ É UMA FADA?{p}NOSSA, ENTÃO FADAS SÃO REAIS???{p}EU SABIA QUE VOCÊS EXIST-{p}"
     $ shake()
@@ -155,21 +160,21 @@ label start:
     "Okay... Eu não devia fazer isso, mas vou te ouvir."
     Hitler "Eu fui pago pra te ajudar, sou sua fada madrinha e vou te ajudar a conquistar seu amor de HTS, é meu dever como mentor, por isso me escute."
     "O-Okay eu acho... Obrigada"
-    Hitler "Primeiro você vai para a escola, pois você já tá atrasada moleca."
+    Hitler "Primeiro você vai para a escola, pois você já tá atrasada moleca!"
     "!!!{p}Verdade! Tenho que correr!!{p}Vou pegar uma torrada, passar geléia, colocar na minha boca e correr pra escola!"
     $ play_sound(doorf)
     scene cidade_protag with fade and dissolve
     "Estou atrasada, estou atrasadaaa!"
     $ shake()
     "Aiii!!{p}Nossa, desculpa desculpa desculpa! Eu trombei em você, desculpa!"
+    show suika tonto with dissolve
     # This shows a character sprite. A placeholder is used, but you can
     # replace it by adding a file named "eileen happy.png" to the images
     # directory.
     stop music
     with fade
-    show suika tonto with dissolve
     Suika ":sadfrog:"
-    show suika tonto at left with dissolve
+    show suika tonto at left with move
     show sakurako bebida with dissolve
     Skrk "What is the brother~ What is the brother~ Vamos brilhar, como um diamante numa geração marcante"
     show sakurako bebida at right with dissolve
@@ -194,6 +199,8 @@ label start:
     # This ends the game.
 
 label credits:
+
+    $ play_music(ed)
 
     # End Credits
 
@@ -228,7 +235,7 @@ label credits:
     ## We display a screen that shows how much the player has seen and played of the game.
     show screen results
 
-    centered "Fin"
+    centered "Fim"
 
     if persistent.game_clear:
 
